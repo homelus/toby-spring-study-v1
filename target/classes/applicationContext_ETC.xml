@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Resource Loader -->
+    <bean id="customResourceLoader" class="jun.spring.v1.etc.resource.CustomResourceLoader"/>
+
+    <!-- ApplicationEventPublisher -->
+    <bean id="depositEventPublisher" class="jun.spring.v1.etc.event.DepositEventPublisher"/>
+    <bean id="depositEventListener" class="jun.spring.v1.etc.event.DepositEventListener"/>
+
+    <bean id="withdrawEventPublisher" class="jun.spring.v1.etc.event.WithdrawEventPublisher"/>
+    <bean id="withdrawEventListener" class="jun.spring.v1.etc.event.WithdrawEventListener"/>
+
+    <!-- Message Source -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>messages</value>
+        </property>
+    </bean>
+
+</beans>
