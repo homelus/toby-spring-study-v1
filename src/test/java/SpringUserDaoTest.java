@@ -22,7 +22,7 @@ public class SpringUserDaoTest {
         DaoFactory : Dao 오브젝트를 생성하고 관계를 맺어주는 제한적인 역할
         애플리케이션 컨텍스트 : 생성하고 관계를 맺는 코드는 없지만 생성정보와 연관관계 정보를 별도의 설정 정보를 통해 얻음
 
-        애플리케이션 컨텍스트 장점
+        애플리케이션 컨텍스트 장점(참조 SpringApplicationContextTest.java)
         1. 클라이언트는 구체적인 팩토리 클래스를 알 필요가 없다. (여러개의 팩토리인 경우 생성의 번거로움)
         2. 종합 IoC 서비스를 제공한다. (다양한 오브젝트의 생성 시점과 전략, 후처리, 정보조합, 설정 다변화, 인터셉팅 등)
         3. 빈을 검색하는 다양한 방법 제공
@@ -32,6 +32,7 @@ public class SpringUserDaoTest {
         // 오브젝트 생성을 애플리케이션 컨텍스트에 요청
         // @Configuration 어노테이션이 표시된 자바 정보를 사용할 경우 AnnotationConfigApplicationContext 이용
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringDaoFactory.class);
+        // ApplicationContext 가 관리하는 오브젝트를 요청하는 메소드를 이용
         UserDaoV3_3RelationSeparation userDao = context.getBean("userDao", UserDaoV3_3RelationSeparation.class);
 
         // 오브젝트 사용

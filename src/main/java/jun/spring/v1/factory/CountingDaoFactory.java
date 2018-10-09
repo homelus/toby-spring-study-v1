@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CountingDaoFactory {
 
+    // 모든 DAO 는 여전히 connectionMaker 에서 만들어지는 오브젝트를 DI 받는다.
+    // 분석작업이 끝나면 주입하는 부분만 바꾸면 원상복구 가능.
     @Bean
     public UserDaoV3_3RelationSeparation userDao() {
         return new UserDaoV3_3RelationSeparation(connectionMaker());

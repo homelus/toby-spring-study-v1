@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /*
-    런타임 의존 관계를 설정해주는 의존관계 주입 작업을 주도하는 클래스 (connectionMaker)
+    런타임 의존 관계를 설정해주는 의존관계 주입 작업을 주도하는 클래스 (다양한 Connection 연결 가능)
     IoC 방식으로 오브젝트 생성과 초기화, 제공 등의 작업을 수행하는 컨테이너(DI 컨테이너)
 
     단점.

@@ -1,6 +1,8 @@
 package jun.spring.v1;
 
 import jun.spring.v1.dao.UserDaoV3_3RelationSeparation;
+import jun.spring.v1.dao.support.ConnectionMaker;
+import jun.spring.v1.dao.support.client.DConnectionMaker;
 import jun.spring.v1.factory.DaoFactoryV1;
 import jun.spring.v1.user.User;
 
@@ -15,11 +17,11 @@ public class UserDaoTestV3_RelationSeparation {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
         // 오브젝트 생성 역할이 클라이언트 코드 내 존재
-//        ConnectionMaker connectionMaker = new DConnectionMaker();
-//        UserDaoV3_3RelationSeparation userDao = new UserDaoV3_3RelationSeparation(connectionMaker);
+        ConnectionMaker connectionMaker = new DConnectionMaker();
+        UserDaoV3_3RelationSeparation userDao = new UserDaoV3_3RelationSeparation(connectionMaker);
 
         // 오브젝트 생성을 팩토리에 요청
-        UserDaoV3_3RelationSeparation userDao = new DaoFactoryV1().userDao();
+//        UserDaoV3_3RelationSeparation userDao = new DaoFactoryV1().userDao();
 
         // 오브젝트 사용
         User user = new User();

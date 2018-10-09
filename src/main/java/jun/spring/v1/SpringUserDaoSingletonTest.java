@@ -9,6 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 /*
     애플리케이션 컨텍스트 = 싱글톤을 저장하고 관리하는 싱글톤 레지스트리(별다른 설정이 없다면 빈 오브젝트는 모두 싱글톤)
     대규모 엔터프라이즈 서버환경에서 만들어지는 수많은 오브젝트 생성 비용을 절감하기 위해 싱글톤을 사용
+    GC 기술이 발달하더라도 많은 부하는 서버가 감당하기 힘듦
  */
 public class SpringUserDaoSingletonTest {
 

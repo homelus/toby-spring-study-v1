@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- DTD 설정-->
-<!--<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">-->
-<!-- Schema 설정 -->
-<!-- 특별한 이유가 없다면 DTD보다는 스키마를 사용 (1. 로컬 네임스페이스 사용, 2. 상속 확장 등에 용이)-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans

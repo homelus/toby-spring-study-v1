@@ -9,9 +9,11 @@
                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean id="userDao" class="jun.spring.v1.dao.UserDaoV5_MethodInjection">
+    <!--userDao.setConnectionMaker(connectionMaker())  -->
         <property name="connectionMaker" ref="connectionMaker"/>
     </bean>
 
+<!-- @Bean   connectionMaker()         return new DConnectionMaker    -->
     <bean id="connectionMaker" class="jun.spring.v1.dao.support.client.DConnectionMaker"/>
 
 </beans>

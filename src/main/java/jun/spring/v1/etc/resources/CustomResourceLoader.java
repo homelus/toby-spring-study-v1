@@ -1,4 +1,4 @@
-package jun.spring.v1.etc.resource;
+package jun.spring.v1.etc.resources;
 
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;

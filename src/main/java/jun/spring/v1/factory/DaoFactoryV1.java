@@ -15,6 +15,9 @@ import jun.spring.v1.dao.support.ConnectionMaker;
  */
 public class DaoFactoryV1 {
 
+    /*
+        런타임 시에 오브젝트 사이에 만들어지는 의존관계
+     */
     public UserDaoV3_3RelationSeparation userDao() {
         ConnectionMaker connectionMaker = new DConnectionMaker();
         UserDaoV3_3RelationSeparation userDao = new UserDaoV3_3RelationSeparation(connectionMaker);

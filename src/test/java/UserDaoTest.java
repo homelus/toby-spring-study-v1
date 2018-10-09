@@ -3,6 +3,8 @@ import jun.spring.v1.dao.UserDaoV5_MethodInjection;
 import jun.spring.v1.factory.DaoFactoryV3_MethodInjection;
 import jun.spring.v1.user.User;
 import org.junit.Test;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 
 import java.sql.SQLException;
 
