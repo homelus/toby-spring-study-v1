@@ -35,7 +35,7 @@ public class SpringUserDaoTest {
 //        System.out.println(this.context);
 //        System.out.println(this);
 
-//        userDao = context.getBean("userDao", UserDao.class);
+//        userDao = context.getBean("userDao", UserDaoJdbc.class);
 
         user1 = new User("hyosub", "곽효섭", "h1234");
         user2 = new User("sangmin", "이상민", "l1234");

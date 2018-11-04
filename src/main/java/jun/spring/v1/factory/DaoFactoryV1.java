@@ -10,7 +10,7 @@ import jun.spring.v1.dao.support.ConnectionMaker;
     팩토리 - 객체의 생성방법을 결정하고 만들어진 오브젝트를 반환
 
     책임의 분리
-    UserDao 와 ConnectionMaker 는 각각 애플리케이션의 핵심적인 데이터 로직과 기술 로직을 담당
+    UserDaoJdbc 와 ConnectionMaker 는 각각 애플리케이션의 핵심적인 데이터 로직과 기술 로직을 담당
     DaoFactory 는 위의 애플리케이션 오브젝트를 구성하고 관계를 정의(컴포넌트 구조를 정의한 설계도)
  */
 public class DaoFactoryV1 {

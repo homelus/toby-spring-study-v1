@@ -19,15 +19,15 @@ import java.sql.SQLException;
 public class UserDaoV3_3RelationSeparation {
 
     /*
-        UserDao(A) 가 ConnectionMaker(B) 에 의존함 => UserDao 가 ConnectionMaker 를 사용하고 있음.
+        UserDaoJdbc(A) 가 ConnectionMaker(B) 에 의존함 => UserDaoJdbc 가 ConnectionMaker 를 사용하고 있음.
         의존관계 A -> B
 
-        ConnectionMaker 가 바뀌면 UserDao 에 영향을 미친다. 하지만 UserDao 가 바뀌면 ConnectionMaker 에 영향을 미치지 않는다.
+        ConnectionMaker 가 바뀌면 UserDaoJdbc 에 영향을 미친다. 하지만 UserDaoJdbc 가 바뀌면 ConnectionMaker 에 영향을 미치지 않는다.
 
         여기서 중요한 점은 ConnectionMaker <인터페이스> 에 의존한다는 점이다.
         인터페이스가 변경되지 않는 이상 서로에게 영향을 미치지 않기 때문에 결합도가 낮다.
 
-        ConnectionMaker 는 UserDao 가 만들어지고 나서 런타임 시에 구체적인 의존관계를 알수 있으므로 의존 오브젝트라고 한다.
+        ConnectionMaker 는 UserDaoJdbc 가 만들어지고 나서 런타임 시에 구체적인 의존관계를 알수 있으므로 의존 오브젝트라고 한다.
      */
     private ConnectionMaker connectionMaker;
 
