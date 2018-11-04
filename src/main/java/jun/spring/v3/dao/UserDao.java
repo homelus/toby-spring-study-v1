@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDao {
+public abstract class UserDao {
 
     private DataSource dataSource;
 
@@ -57,9 +57,7 @@ public class UserDao {
         }
     }
 
-    private PreparedStatement makeStatement(Connection connection) throws SQLException {
-        return connection.prepareStatement("delete from users");
-    }
+    abstract protected PreparedStatement makeStatement(Connection connection) throws SQLException;
 
     public User get(String id) throws SQLException {
 
