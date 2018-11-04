@@ -13,12 +13,18 @@ public class UserDao {
 
     private DataSource dataSource;
 
+    private JdbcContext jdbcContext;
+
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+    public void setJdbcContext(JdbcContext jdbcContext) {
+        this.jdbcContext = jdbcContext;
+    }
+
     public void add(final User user) throws SQLException {
-        class AddStatement implements StatementStrategy{
+        jdbcContext.workWithStatementStrategy(new StatementStrategy() {
             @Override
             public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
                 PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?,?,?)");
@@ -27,40 +33,16 @@ public class UserDao {
                 ps.setString(3, user.getPassword());
                 return ps;
             }
-        }
-        StatementStrategy strategy = new AddStatement();
-        jdbcContextWithStatementStrategy(strategy);
+        });
     }
 
     public void deleteAll() throws SQLException {
-        StatementStrategy strategy = new DeleteAllStatement();
-        jdbcContextWithStatementStrategy(strategy);
-    }
-
-    public void jdbcContextWithStatementStrategy(StatementStrategy strategy) throws SQLException {
-
-        Connection c = null;
-        PreparedStatement ps = null;
-        try {
-            c = dataSource.getConnection();
-
-            ps = strategy.makePreparedStatement(c);
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } finally  {
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException ignore) {}
+        jdbcContext.workWithStatementStrategy(new StatementStrategy() {
+            @Override
+            public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
+                return c.prepareStatement("delete from users");
             }
-            if (c != null) {
-                try {
-                    c.close();
-                }  catch (SQLException ignore) {}
-            }
-        }
+        });
     }
 
     public User get(String id) throws SQLException {
