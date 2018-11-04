@@ -1,7 +1,7 @@
 package ch3;
 
-import jun.spring.v1.user.User;
 import jun.spring.v3.dao.UserDao;
+import jun.spring.v3.model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

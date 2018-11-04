@@ -1,6 +1,6 @@
 package jun.spring.v3.dao;
 
-import jun.spring.v1.user.User;
+import jun.spring.v3.model.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import javax.sql.DataSource;
