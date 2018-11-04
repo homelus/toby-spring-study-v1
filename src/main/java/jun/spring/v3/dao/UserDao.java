@@ -38,7 +38,7 @@ public class UserDao {
         PreparedStatement ps = null;
         try {
             c = dataSource.getConnection();
-            ps = c.prepareStatement("delete from users");
+            ps = makeStatement(c);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -55,7 +55,10 @@ public class UserDao {
                 }  catch (SQLException ignore) {}
             }
         }
+    }
 
+    private PreparedStatement makeStatement(Connection connection) throws SQLException {
+        return connection.prepareStatement("delete from users");
     }
 
     public User get(String id) throws SQLException {
