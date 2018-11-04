@@ -36,6 +36,7 @@ public class UserDaoTest {
 
     @Test
     public void add() throws SQLException {
+        userDao.deleteAll();
         userDao.add(user1);
     }
 
