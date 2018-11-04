@@ -1,10 +1,10 @@
+package ch1;
+
 import jun.spring.v1.dao.UserDaoV4_DependencyLookup;
 import jun.spring.v1.dao.UserDaoV5_MethodInjection;
 import jun.spring.v1.factory.DaoFactoryV3_MethodInjection;
 import jun.spring.v1.user.User;
 import org.junit.Test;
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 
 import java.sql.SQLException;
 
@@ -14,9 +14,9 @@ public class UserDaoTest {
     public void userDaoTest() throws SQLException, ClassNotFoundException {
 
         // 오브젝트 자신이 빈일 필요가 없다.
-//        UserDaoV4_DependencyLookup userDao = new UserDaoV4_DependencyLookup();
+        UserDaoV4_DependencyLookup userDao = new UserDaoV4_DependencyLookup();
 
-        UserDaoV5_MethodInjection userDao = new DaoFactoryV3_MethodInjection().userDao();
+//        UserDaoV5_MethodInjection userDao = new DaoFactoryV3_MethodInjection().userDao();
 
         // 오브젝트 사용
         User user = new User();

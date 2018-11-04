@@ -1,3 +1,5 @@
+package ch1;
+
 import jun.spring.v1.dao.UserDaoV3_3RelationSeparation;
 import jun.spring.v1.dao.UserDaoV5_MethodInjection;
 import jun.spring.v1.dao.UserDaoV6_DataSource;
@@ -9,7 +11,6 @@ import org.springframework.beans.factory.config.SingletonBeanRegistry;
 import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.sql.SQLException;
