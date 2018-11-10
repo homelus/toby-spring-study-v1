@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.SQLException;
@@ -91,6 +92,22 @@ public class UserDaoTest {
         checkSameUser(user1, users3.get(0));
         checkSameUser(user2, users3.get(2));
         checkSameUser(user3, users3.get(1));
+    }
+
+    @Test
+    public void update() {
+        userDao.deleteAll();
+
+        userDao.add(user1);
+        user1.setName("여동엽");
+        user1.setPassword("dongyup");
+        user1.setLevel(Level.GOLD);
+        user1.setLogin(1000);
+        user1.setRecommend(999);
+        userDao.update(user1);
+
+        User user1update = userDao.get(user1.getId());
+        checkSameUser(user1, user1update);
     }
 
     private void checkSameUser(User user1, User user2) {
