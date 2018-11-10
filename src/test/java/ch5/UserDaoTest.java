@@ -99,6 +99,8 @@ public class UserDaoTest {
         userDao.deleteAll();
 
         userDao.add(user1);
+        userDao.add(user2);
+
         user1.setName("여동엽");
         user1.setPassword("dongyup");
         user1.setLevel(Level.GOLD);
@@ -108,6 +110,8 @@ public class UserDaoTest {
 
         User user1update = userDao.get(user1.getId());
         checkSameUser(user1, user1update);
+        User user2update = userDao.get(user2.getId());
+        checkSameUser(user2, user2update);
     }
 
     private void checkSameUser(User user1, User user2) {
