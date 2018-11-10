@@ -2,12 +2,6 @@ package jun.spring.ch5.model;
 
 public class User {
 
-    private static final int BASIC = 1;
-    private static final int SILVER = 2;
-    private static final int GOLD = 3;
-
-    int level;
-
     String id;
     String name;
     String password;
@@ -18,14 +12,6 @@ public class User {
         this.id = id;
         this.name = name;
         this.password = password;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public String getId() {
