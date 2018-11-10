@@ -58,10 +58,10 @@ public class UserServiceTest {
         userService.add(userWithoutLevel);
 
         User userWithLevelRead = userDao.get(userWithLevel.getId());
-        User userWIthoutLevelRead = userDao.get(userWithoutLevel.getId());
+        User userWithoutLevelRead = userDao.get(userWithoutLevel.getId());
 
         assertThat(userWithLevel.getLevel(), is(userWithLevelRead.getLevel()));
-        assertThat(userWithoutLevel.getLevel(), is(Level.BASIC));
+        assertThat(userWithoutLevelRead.getLevel(), is(Level.BASIC));
     }
 
     @Test
