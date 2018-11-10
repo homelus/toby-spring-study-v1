@@ -47,6 +47,24 @@ public class UserServiceTest {
     }
 
     @Test
+    public void add() {
+        userDao.deleteAll();
+
+        User userWithLevel = users.get(4);
+        User userWithoutLevel = users.get(0);
+        userWithoutLevel.setLevel(null);
+
+        userService.add(userWithLevel);
+        userService.add(userWithoutLevel);
+
+        User userWithLevelRead = userDao.get(userWithLevel.getId());
+        User userWIthoutLevelRead = userDao.get(userWithoutLevel.getId());
+
+        assertThat(userWithLevel.getLevel(), is(userWithLevelRead.getLevel()));
+        assertThat(userWithoutLevel.getLevel(), is(Level.BASIC));
+    }
+
+    @Test
     public void upgradeLevels() {
         userDao.deleteAll();
         for (User user : users) {
