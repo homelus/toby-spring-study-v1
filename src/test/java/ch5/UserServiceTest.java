@@ -16,6 +16,7 @@ import java.util.List;
 
 import static jun.spring.ch5.service.UserLevelUpgradePolicyImpl.MIN_LOGCOUNT_FOR_SILVER;
 import static jun.spring.ch5.service.UserLevelUpgradePolicyImpl.MIN_RECOMMEND_FOR_GOLD;
+import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -82,6 +83,26 @@ public class UserServiceTest {
         checkLevelUpgraded(users.get(4), false);
     }
 
+    @Test
+    public void upgradeAllOrNothing() {
+        UserService testUserService = new TestUserService(users.get(3).getId());
+        testUserService.setUserDao(this.userDao);
+
+        userDao.deleteAll();
+        for (User user : users) {
+            userDao.add(user);
+        }
+
+        try {
+            testUserService.upgradeLevels();
+            fail("TestUserServiceException expected");
+        } catch (TestUserServiceException e) {
+        }
+
+        checkLevelUpgraded(users.get(1), false);
+
+    }
+
     private void checkLevelUpgraded(User user, boolean upgraded) {
         User userUpdate = userDao.get(user.getId());
         if (upgraded) {
@@ -91,5 +112,20 @@ public class UserServiceTest {
         }
     }
 
+    static class TestUserService extends UserService {
+        private String id;
+
+        private TestUserService(String id) {
+            this.id = id;
+        }
+
+        @Override
+        protected void upgradeLevel(User user) {
+            if (user.getId().equals(this.id))  {
+                throw new TestUserServiceException();
+            }
+            super.upgradeLevel(user);
+        }
+    }
 
 }
