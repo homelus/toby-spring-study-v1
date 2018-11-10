@@ -1,11 +1,11 @@
 package ch1;
 
-import jun.spring.v1.dao.UserDaoV3_3RelationSeparation;
-import jun.spring.v1.dao.UserDaoV5_MethodInjection;
-import jun.spring.v1.dao.UserDaoV6_DataSource;
-import jun.spring.v1.factory.SpringDaoFactory;
-import jun.spring.v1.factory.SpringDaoFactoryV2_DataSource;
-import jun.spring.v1.user.User;
+import jun.spring.ch1.dao.UserDaoV3_3RelationSeparation;
+import jun.spring.ch1.dao.UserDaoV5_MethodInjection;
+import jun.spring.ch1.dao.UserDaoV6_DataSource;
+import jun.spring.ch1.factory.SpringDaoFactory;
+import jun.spring.ch1.factory.SpringDaoFactoryV2_DataSource;
+import jun.spring.ch1.user.User;
 import org.junit.Test;
 import org.springframework.beans.factory.config.SingletonBeanRegistry;
 import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;

@@ -1,16 +1,16 @@
 package ch1;
 
-import jun.spring.v1.etc.LazyBean;
-import jun.spring.v1.etc.LifeCycleBean;
-import jun.spring.v1.etc.StandardBean;
-import jun.spring.v1.etc.annotation.SpecialAnnotation;
-import jun.spring.v1.etc.event.DepositEventPublisher;
-import jun.spring.v1.etc.event.WithdrawEventPublisher;
-import jun.spring.v1.etc.resources.CustomResourceLoader;
-import jun.spring.v1.factory.CountingDaoFactory;
-import jun.spring.v1.factory.SpringDaoFactory;
-import jun.spring.v1.factory.SpringDaoFactoryV1_Scope;
-import jun.spring.v1.user.User;
+import jun.spring.ch1.etc.LazyBean;
+import jun.spring.ch1.etc.LifeCycleBean;
+import jun.spring.ch1.etc.StandardBean;
+import jun.spring.ch1.etc.annotation.SpecialAnnotation;
+import jun.spring.ch1.etc.event.DepositEventPublisher;
+import jun.spring.ch1.etc.event.WithdrawEventPublisher;
+import jun.spring.ch1.etc.resources.CustomResourceLoader;
+import jun.spring.ch1.factory.CountingDaoFactory;
+import jun.spring.ch1.factory.SpringDaoFactory;
+import jun.spring.ch1.factory.SpringDaoFactoryV1_Scope;
+import jun.spring.ch1.user.User;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

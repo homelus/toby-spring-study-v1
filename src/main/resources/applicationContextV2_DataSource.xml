@@ -4,11 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="userDao" class="jun.spring.v1.dao.UserDaoV5_MethodInjection">
+    <bean id="userDao" class="jun.spring.ch1.dao.UserDaoV5_MethodInjection">
         <property name="connectionMaker" ref="connectionMaker"/>
     </bean>
 
-    <bean id="connectionMaker" class="jun.spring.v1.dao.support.client.DConnectionMaker"/>
+    <bean id="connectionMaker" class="jun.spring.ch1.dao.support.client.DConnectionMaker"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
         <!-- 빈 오브젝트의 레퍼런스가 아니라 단순 값을 주입할 때는 value 애트리뷰트 사용 (타입에 따라 컨버팅)-->

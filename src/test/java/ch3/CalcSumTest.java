@@ -1,6 +1,6 @@
 package ch3;
 
-import jun.spring.v3.practice.Calculator;
+import jun.spring.ch3.practice.Calculator;
 import org.junit.Before;
 import org.junit.Test;
 

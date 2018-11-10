@@ -1,9 +1,9 @@
 package ch4;
 
-import jun.spring.v4.dao.UserDao;
-import jun.spring.v4.exception.DuplicateUserIdException;
-import jun.spring.v4.exception.RetryFailedException;
-import jun.spring.v4.model.User;
+import jun.spring.ch4.dao.UserDao;
+import jun.spring.ch4.exception.DuplicateUserIdException;
+import jun.spring.ch4.exception.RetryFailedException;
+import jun.spring.ch4.model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

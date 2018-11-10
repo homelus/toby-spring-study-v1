@@ -1,7 +1,7 @@
 package ch2_test;
 
-import jun.spring.v1.dao.UserDao;
-import jun.spring.v1.user.User;
+import jun.spring.ch1.dao.UserDao;
+import jun.spring.ch1.user.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

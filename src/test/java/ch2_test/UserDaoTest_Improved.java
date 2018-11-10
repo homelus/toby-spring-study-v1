@@ -1,7 +1,7 @@
 package ch2_test;
 
-import jun.spring.v1.dao.UserDaoV4_DependencyLookup;
-import jun.spring.v1.user.User;
+import jun.spring.ch1.dao.UserDaoV4_DependencyLookup;
+import jun.spring.ch1.user.User;
 import org.junit.Test;
 
 import java.sql.SQLException;

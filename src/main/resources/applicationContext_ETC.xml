@@ -6,13 +6,13 @@
 
     <context:annotation-config/>
     <!-- Resource Loader -->
-    <bean id="customResourceLoader" class="jun.spring.v1.etc.resources.CustomResourceLoader"/>
+    <bean id="customResourceLoader" class="jun.spring.ch1.etc.resources.CustomResourceLoader"/>
 
     <!-- ApplicationEventPublisher -->
-    <bean id="depositEventPublisher" class="jun.spring.v1.etc.event.DepositEventPublisher"/>
-    <bean id="depositEventListener" class="jun.spring.v1.etc.event.DepositEventListener"/>
+    <bean id="depositEventPublisher" class="jun.spring.ch1.etc.event.DepositEventPublisher"/>
+    <bean id="depositEventListener" class="jun.spring.ch1.etc.event.DepositEventListener"/>
 
-    <bean id="withdrawEventPublisher" class="jun.spring.v1.etc.event.WithdrawEventPublisher"/>
+    <bean id="withdrawEventPublisher" class="jun.spring.ch1.etc.event.WithdrawEventPublisher"/>
     <!--<bean id="withdrawEventListener" class="jun.spring.v1.etc.event.WithdrawEventListener"/>-->
 
     <!-- Message Source -->
@@ -23,16 +23,16 @@
     </bean>
 
     <!-- Lazy Loading Test -->
-    <bean id="standardBean" class="jun.spring.v1.etc.StandardBean" lazy-init="false"/>
-    <bean id="lazyBean" class="jun.spring.v1.etc.LazyBean" lazy-init="true"/>
+    <bean id="standardBean" class="jun.spring.ch1.etc.StandardBean" lazy-init="false"/>
+    <bean id="lazyBean" class="jun.spring.ch1.etc.LazyBean" lazy-init="true"/>
 
     <!-- LifeCycle -->
-    <bean id="lifeCycleBean" class="jun.spring.v1.etc.LifeCycleBean" lazy-init="true"/>
+    <bean id="lifeCycleBean" class="jun.spring.ch1.etc.LifeCycleBean" lazy-init="true"/>
 
     <!-- Intercepting -->
-    <bean id="interceptorBean" class="jun.spring.v1.etc.InterceptorBean" lazy-init="true"/>
+    <bean id="interceptorBean" class="jun.spring.ch1.etc.InterceptorBean" lazy-init="true"/>
 
     <!-- SpecialBean -->
-    <bean id="specialBean" class="jun.spring.v1.etc.SpecialBean" lazy-init="true"/>
+    <bean id="specialBean" class="jun.spring.ch1.etc.SpecialBean" lazy-init="true"/>
 
 </beans>
