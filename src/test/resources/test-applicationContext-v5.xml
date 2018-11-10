@@ -10,6 +10,11 @@
 
     <bean id="userService" class="jun.spring.ch5.service.UserService">
         <property name="userDao" ref="userDao"/>
+        <property name="userLevelUpgradePolicy" ref="userLevelUpgradePolicy"/>
+    </bean>
+
+    <bean id="userLevelUpgradePolicy" class="jun.spring.ch5.service.UserLevelUpgradePolicyImpl">
+        <property name="userDao" ref="userDao"/>
     </bean>
 
     <bean id="userDao" class="jun.spring.ch5.dao.UserDaoJdbc">
