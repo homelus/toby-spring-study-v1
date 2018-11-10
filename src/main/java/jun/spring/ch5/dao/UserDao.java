@@ -1,6 +1,6 @@
 package jun.spring.ch5.dao;
 
-import jun.spring.ch4.model.User;
+import jun.spring.ch5.model.User;
 
 import java.util.List;
 
