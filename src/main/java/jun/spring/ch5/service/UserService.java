@@ -3,15 +3,10 @@ package jun.spring.ch5.service;
 import jun.spring.ch5.dao.UserDao;
 import jun.spring.ch5.model.Level;
 import jun.spring.ch5.model.User;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,10 +17,10 @@ public class UserService {
 
     UserDao userDao;
 
-    DataSource dataSource;
+    private PlatformTransactionManager transactionManager;
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public void setTransactionManager(PlatformTransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
     }
 
     public void setUserDao(UserDao userDao) {
@@ -34,7 +29,6 @@ public class UserService {
 
     public void upgradeLevels() throws SQLException {
 
-        PlatformTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
         try {
