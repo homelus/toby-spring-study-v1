@@ -30,9 +30,9 @@ public class UserDaoTest {
 
     @Before
     public void setUp() {
-        user1 = new User("hyosub", "곽효섭", "h1234", Level.BASIC, 1, 0);
-        user2 = new User("sangmin", "이상민", "l1234", Level.SILVER, 55, 10);
-        user3 = new User("hyungsuk", "김형석", "k1234", Level.GOLD, 100, 40);
+        user1 = new User("hyosub", "곽효섭", "h1234", Level.BASIC, 1, 0, "hs@mail.com");
+        user2 = new User("sangmin", "이상민", "l1234", Level.SILVER, 55, 10, "sm@mail.com");
+        user3 = new User("hyungsuk", "김형석", "k1234", Level.GOLD, 100, 40, "hsk@mail.com");
     }
 
     @Test
@@ -120,6 +120,7 @@ public class UserDaoTest {
         assertThat(user1.getLevel(), is(user2.getLevel()));
         assertThat(user1.getLogin(), is(user2.getLogin()));
         assertThat(user1.getRecommend(), is(user2.getRecommend()));
+        assertThat(user1.getEmail(), is(user2.getEmail()));
     }
 
 }

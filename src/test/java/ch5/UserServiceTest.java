@@ -42,11 +42,11 @@ public class UserServiceTest {
     @Before
     public void setUp() {
         users = Arrays.asList(
-                new User("hyosub", "곽효섭", "h1234", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER - 1, 0),
-                new User("sangmin", "이상민", "l1234", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER, 0),
-                new User("hyungsuk", "김형석", "k1234", Level.SILVER, 60, MIN_RECOMMEND_FOR_GOLD - 1),
-                new User("yudongyup", "여동엽", "y1234", Level.SILVER, 60, MIN_RECOMMEND_FOR_GOLD),
-                new User("jusunghwan", "주성환", "j1234", Level.GOLD, 100, Integer.MAX_VALUE)
+                new User("hyosub", "곽효섭", "h1234", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER - 1, 0, "ghs@email.com"),
+                new User("sangmin", "이상민", "l1234", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER, 0, "lsm@email.com"),
+                new User("hyungsuk", "김형석", "k1234", Level.SILVER, 60, MIN_RECOMMEND_FOR_GOLD - 1, "khs@email.com"),
+                new User("yudongyup", "여동엽", "y1234", Level.SILVER, 60, MIN_RECOMMEND_FOR_GOLD, "ydy@email.com"),
+                new User("jusunghwan", "주성환", "j1234", Level.GOLD, 100, Integer.MAX_VALUE, "jsh@email.com")
         );
     }
 
