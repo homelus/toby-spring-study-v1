@@ -3,6 +3,8 @@ package jun.spring.ch5.service;
 import jun.spring.ch5.dao.UserDao;
 import jun.spring.ch5.model.Level;
 import jun.spring.ch5.model.User;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -15,9 +17,15 @@ public class UserService {
     public static final int MIN_LOGCOUNT_FOR_SILVER = 50;
     public static final int MIN_RECOMMEND_FOR_GOLD = 30;
 
-    UserDao userDao;
+    private UserDao userDao;
+
+    private MailSender mailSender;
 
     private PlatformTransactionManager transactionManager;
+
+    public void setMailSender(MailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     public void setTransactionManager(PlatformTransactionManager transactionManager) {
         this.transactionManager = transactionManager;
@@ -50,6 +58,7 @@ public class UserService {
     protected void upgradeLevel(User user) {
         user.upgradeLevel();
         userDao.update(user);
+        sendUpgradeMail(user);
     }
 
     private boolean canUpgradeLevel(User user) {
@@ -64,6 +73,16 @@ public class UserService {
             default:
                 throw new IllegalArgumentException("Unknown Level: " + currentLevel);
         }
+    }
+
+    private void sendUpgradeMail(User user) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setFrom("homelus@daum.net");
+        mailMessage.setSubject("Upgrade 안내");
+        mailMessage.setText("사용자님의 등급이 " + user.getLevel().name() + " 로 업그레이드 되었습니다.");
+
+        mailSender.send(mailMessage);
     }
 
     public void add(User user) {
