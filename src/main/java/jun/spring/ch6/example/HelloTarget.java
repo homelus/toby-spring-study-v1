@@ -1,4 +1,4 @@
-package jun.spring.ch6.proxy;
+package jun.spring.ch6.example;
 
 public class HelloTarget implements Hello{
     @Override
