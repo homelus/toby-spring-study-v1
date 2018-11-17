@@ -1,4 +1,4 @@
-package jun.spring.ch6.service;
+package v6;
 
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;

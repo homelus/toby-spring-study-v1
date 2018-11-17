@@ -59,7 +59,6 @@ public class UserServiceTest {
 
     @Before
     public void setUp() {
-
         users = Arrays.asList(
                 new User("hyosub", "곽효섭", "h1234", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER - 1, 0, "ghs@email.com"),
                 new User("sangmin", "이상민", "l1234", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER, 0, "lsm@email.com"),
@@ -165,6 +164,11 @@ public class UserServiceTest {
         assertThat(testUserService, instanceOf(java.lang.reflect.Proxy.class));
     }
 
+    @Test
+    public void readOnlyTransactionAttribute() {
+        testUserService.getAll();
+    }
+
     private void checkUserAndLevel(User updated, String expectedId, Level expectedLevel) {
         assertThat(updated.getId(), is(expectedId));
         assertThat(updated.getLevel(), is(expectedLevel));
@@ -179,7 +183,7 @@ public class UserServiceTest {
         }
     }
 
-    static class TestUserServiceImpl extends UserServiceImpl {
+    static class TestUserService extends UserServiceImpl {
         private String id = "yudongyup";
 
         @Override
@@ -188,6 +192,13 @@ public class UserServiceTest {
                 throw new TestUserServiceException();
             }
             super.upgradeLevel(user);
+        }
+
+        public List<User> getAll() {
+            for (User user : super.getAll()) {
+                super.update(user);
+            }
+            return null;
         }
     }
 
