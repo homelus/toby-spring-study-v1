@@ -16,10 +16,13 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.ArrayList;
@@ -37,6 +40,8 @@ import static org.mockito.Mockito.*;
 
 @ContextConfiguration("/test-applicationContext-v6.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
+//@TransactionConfiguration(defaultRollback = false)
 public class UserServiceTest {
 
     @Autowired
@@ -214,6 +219,23 @@ public class UserServiceTest {
         finally {
             transactionManager.rollback(txStatus);
         }
+    }
+
+    @Test
+    @Transactional(readOnly = true)
+    public void transactionAnnotationSyncTest() {
+        userService.deleteAll();
+        userService.add(users.get(0));
+        userService.add(users.get(1));
+    }
+
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void transactionAnnotationNotRollbackTest() {
+        userService.deleteAll();
+        userService.add(users.get(0));
+        userService.add(users.get(1));
     }
 
     private void checkUserAndLevel(User updated, String expectedId, Level expectedLevel) {
