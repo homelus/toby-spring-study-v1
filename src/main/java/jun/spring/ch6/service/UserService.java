@@ -1,6 +1,7 @@
 package jun.spring.ch6.service;
 
 import jun.spring.ch6.model.User;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface UserService {
 
     void upgradeLevels();
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     User get(String id);
 
     @Transactional(readOnly = true)
