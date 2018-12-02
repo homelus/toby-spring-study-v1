@@ -1,4 +1,4 @@
-package v6.learningtest;
+package ch6.learningtest;
 
 import org.junit.Test;
 

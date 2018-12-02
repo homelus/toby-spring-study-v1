@@ -25,7 +25,7 @@
         <property name="mailSender" ref="mailSender"/>
     </bean>
 
-    <bean id="testUserService" class="v7.UserServiceTest$TestUserService" parent="userService"/>
+    <bean id="testUserService" class="ch7.UserServiceTest$TestUserService" parent="userService"/>
 
     <bean id="userDao" class="jun.spring.ch7.user.dao.UserDaoJdbc">
         <property name="sqlService" ref="sqlService"/>
@@ -45,6 +45,6 @@
         </property>
     </bean>
 
-    <bean id="mailSender" class="v6.DummyMailSender"/>
-  
+    <bean id="mailSender" class="ch6.DummyMailSender"/>
+
 </beans>

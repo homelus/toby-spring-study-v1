@@ -1,11 +1,11 @@
-package v6;
+package ch7;
 
 import ch5.TestUserServiceException;
-import jun.spring.ch6.dao.UserDao;
-import jun.spring.ch6.model.Level;
-import jun.spring.ch6.model.User;
-import jun.spring.ch6.service.UserService;
-import jun.spring.ch6.service.UserServiceImpl;
+import jun.spring.ch7.user.dao.UserDao;
+import jun.spring.ch7.user.model.Level;
+import jun.spring.ch7.user.model.User;
+import jun.spring.ch7.user.service.UserService;
+import jun.spring.ch7.user.service.UserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,10 +37,9 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration("/test-applicationContext-v6.xml")
+@ContextConfiguration("/test-applicationContext-v7.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
-//@TransactionConfiguration(defaultRollback = false)
+//@Transactional
 public class UserServiceTest {
 
     @Autowired

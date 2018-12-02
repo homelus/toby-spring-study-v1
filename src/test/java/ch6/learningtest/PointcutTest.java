@@ -1,4 +1,4 @@
-package v6.learningtest;
+package ch6.learningtest;
 
 import jun.spring.ch6.example.pointcut.Bean;
 import jun.spring.ch6.example.pointcut.Target;
