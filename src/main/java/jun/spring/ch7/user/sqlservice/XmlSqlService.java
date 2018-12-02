@@ -5,10 +5,10 @@ import jun.spring.ch7.user.exception.SqlRetrievalFailureException;
 import jun.spring.ch7.user.sqlservice.jaxb.SqlType;
 import jun.spring.ch7.user.sqlservice.jaxb.Sqlmap;
 
+import javax.annotation.PostConstruct;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +17,20 @@ public class XmlSqlService implements SqlService {
 
     private Map<String, String> sqlMap = new HashMap<>();
 
-    public XmlSqlService() {
+    private String sqlmapFile;
+
+    public void setSqlmapFile(String sqlmapFile) {
+        this.sqlmapFile = sqlmapFile;
+    }
+
+    @PostConstruct
+    public void loadSql() {
         String contextPath = Sqlmap.class.getPackage().getName();
 
         try {
             JAXBContext context = JAXBContext.newInstance(contextPath);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            InputStream is = UserDao.class.getClass().getResourceAsStream("/jaxb/sqlmap.xml");
+            InputStream is = UserDao.class.getResourceAsStream("/jaxb/sqlmap.xml");
             Sqlmap sqlmap = (Sqlmap) unmarshaller.unmarshal(is);
 
             for (SqlType sql : sqlmap.getSql()) {
@@ -43,4 +50,5 @@ public class XmlSqlService implements SqlService {
             return sql;
         }
     }
+
 }
