@@ -20,8 +20,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:jaxb-context.xml")
-public class JaxbTest {
+@ContextConfiguration("classpath:jaxb-unmarshaller-context.xml")
+public class JAXBTest {
 
     @Autowired
     private Unmarshaller unmarshaller;
@@ -44,6 +44,7 @@ public class JaxbTest {
 
         checkSqlList(sqlmap);
     }
+
 
     private void checkSqlList(Sqlmap sqlmap) {
         List<SqlType> sqlList = sqlmap.getSql();

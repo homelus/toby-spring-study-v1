@@ -40,9 +40,12 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="sqlService" class="jun.spring.ch7.user.sqlservice.DefaultSqlService">
-        <!--<property name="sqlReader" ref="sqlReader"/>-->
-        <!--<property name="sqlRegistry" ref="sqlRegistry"/>-->
+    <bean id="sqlService" class="jun.spring.ch7.user.sqlservice.OxmSqlService">
+        <property name="unmarshaller" ref="unmarshaller"/>
+    </bean>
+
+    <bean id="unmarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="jun.spring.ch7.user.sqlservice.jaxb"/>
     </bean>
 
     <!--<bean id="sqlReader" class="jun.spring.ch7.user.sqlservice.JaxbXmlSqlReader">-->
