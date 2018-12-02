@@ -40,11 +40,16 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="sqlService" class="jun.spring.ch7.user.sqlservice.XmlSqlService">
-        <property name="sqlReader" ref="sqlService"/>
-        <property name="sqlRegistry" ref="sqlService"/>
-        <property name="sqlmapFile" value="/jaxb/sqlmap.xml"/>
+    <bean id="sqlService" class="jun.spring.ch7.user.sqlservice.DefaultSqlService">
+        <!--<property name="sqlReader" ref="sqlReader"/>-->
+        <!--<property name="sqlRegistry" ref="sqlRegistry"/>-->
     </bean>
+
+    <!--<bean id="sqlReader" class="jun.spring.ch7.user.sqlservice.JaxbXmlSqlReader">-->
+        <!--<property name="sqlmapFile" value="/jaxb/sqlmap.xml"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="sqlRegistry" class="jun.spring.ch7.user.sqlservice.HashMapSqlRegistry"/>-->
 
     <bean id="mailSender" class="ch6.DummyMailSender"/>
 
