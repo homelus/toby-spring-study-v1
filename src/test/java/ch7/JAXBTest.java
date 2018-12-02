@@ -43,6 +43,7 @@ public class JAXBTest {
         Sqlmap sqlmap = (Sqlmap) sqlUnmarshaller.unmarshal(getClass().getClassLoader().getResourceAsStream("sqlmap.xml"));
 
         checkSqlList(sqlmap);
+
     }
 
 
