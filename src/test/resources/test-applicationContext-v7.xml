@@ -45,6 +45,12 @@
         <property name="sqlmap" value="classpath:jaxb/sqlmap.xml"/>
     </bean>
 
+    <bean id="sqlRegistry" class="jun.spring.ch7.user.sqlservice.ConcurrentHashMapSqlRegistry"/>
+
+    <bean id="sqlAdminService" class="jun.spring.ch7.user.sqlservice.SqlAdminService">
+        <property name="updatableSqlRegistry" ref="sqlRegistry"/>
+    </bean>
+
     <bean id="unmarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="contextPath" value="jun.spring.ch7.user.sqlservice.jaxb"/>
     </bean>
