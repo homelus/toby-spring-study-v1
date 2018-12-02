@@ -1,11 +1,11 @@
-package v7;
+package ch6;
 
 import ch5.TestUserServiceException;
-import jun.spring.ch7.user.dao.UserDao;
-import jun.spring.ch7.user.model.Level;
-import jun.spring.ch7.user.model.User;
-import jun.spring.ch7.user.service.UserService;
-import jun.spring.ch7.user.service.UserServiceImpl;
+import jun.spring.ch6.dao.UserDao;
+import jun.spring.ch6.model.Level;
+import jun.spring.ch6.model.User;
+import jun.spring.ch6.service.UserService;
+import jun.spring.ch6.service.UserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,9 +37,10 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration("/test-applicationContext-v7.xml")
+@ContextConfiguration("/test-applicationContext-v6.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-//@Transactional
+@Transactional
+//@TransactionConfiguration(defaultRollback = false)
 public class UserServiceTest {
 
     @Autowired

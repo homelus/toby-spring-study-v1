@@ -1,4 +1,4 @@
-package v6.proxy;
+package ch6.proxy;
 
 import jun.spring.ch6.example.Hello;
 import jun.spring.ch6.example.HelloTarget;
@@ -13,7 +13,6 @@ import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.NameMatchMethodPointcut;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 import static org.hamcrest.CoreMatchers.is;

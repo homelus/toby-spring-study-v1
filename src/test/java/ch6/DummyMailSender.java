@@ -1,4 +1,4 @@
-package v6;
+package ch6;
 
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;

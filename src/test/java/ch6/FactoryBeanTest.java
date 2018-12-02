@@ -1,4 +1,4 @@
-package v6;
+package ch6;
 
 import jun.spring.ch6.example.Message;
 import jun.spring.ch6.example.MessageFactoryBean;
