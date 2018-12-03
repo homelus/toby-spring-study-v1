@@ -142,8 +142,8 @@ public interface InputStreamSource {
 ```
 
 #### 7.3.3.2 리로스 로더
-> 문자열로 정의된 리소스를 실제 Resource 타입 오브젝트로 변환해주는 인터페이스
-> 접두어가 의미하는 위치와 방법을 이용해 리소스를 읽어온다.
+> 스프링에서 문자열로 정의된 프로퍼티를 실제 Resource 타입 오브젝트로 변환해주는 인터페이스 <br>
+> 접두어가 의미하는 위치와 방법을 이용해 리소스를 읽어온다. <br>
 
 ![7-1 ResourceLoader 가 처리하는 접두어의 예](https://github.com/YounHyunJun/TobySpringExample/blob/master/img/7.1table.PNG)
 
@@ -156,8 +156,8 @@ public interface ResourceLoader {
 ```
 
 #### 7.3.3.3 Resource를 이용해 XML 파일 가져오기
-> String 타입을 Resource 타입으로 바꾼다.
-> Resource 타입은 실제 소스가 어떤 것이든 상관없이 getInputStream() 메소드를 이용해 스트림으로 데이터를 가져올 수 있다.
+> String 타입을 Resource 타입으로 바꾼다. <br>
+> Resource 타입은 실제 소스가 어떤 것이든 상관없이 getInputStream() 메소드를 이용해 스트림으로 데이터를 가져올 수 있다. <br>
 
 ```java
 private class OxmSqlReader implements SqlReader {
