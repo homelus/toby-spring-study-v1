@@ -61,7 +61,7 @@ public void mockUnmarshallerTest() throws IOException {
 ### 7.3.2 OXM 서비스 추상화 적용
 > SqlRegistry는 DI 받도록 설정, SqlReader 는 OXM 언마샬러를 이용하여 OxmSqlService 내에 고정한다.<br>
 > 기존구조를 유지하고 SQL을 읽는 방법(Reader)을 OXM으로 제한하여 사용성을 극대화 하는 방법이 목적이다. <br>
-![7.7 OxmSqlReader - OxmSqlService](https://github.com/YounHyunJun/TobySpringExample/blob/master/img/7-7img.PNG)
+![7.7 OxmSqlReader - OxmSqlService](https://github.com/YounHyunJun/TobySpringExample/blob/master/img/7-7img.PNG/450x0//토비의스프랭 3.1)
 
 #### 7.3.2.1 멤버 클래스를 참조하는 통합 클래스
 > SqlReader 타입의 의존 오브젝트를 사용하되 스태틱 멤버 클래스로 내장해 자신만 사용하도록 한다.
