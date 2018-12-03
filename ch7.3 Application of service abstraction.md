@@ -1,27 +1,67 @@
 ## 7.3 서비스 추상화 적용
-> 서비스 추상화를 통한 JaxbXmlSqlReader 개선 및 발전 
-> JAXB 외에도 다양한 Object - XML Mapping 기술이 있다. (OXM 서비스 추상화) 
-> XML 파일을 클래스패스, 파일, HTTP 프로토콜 등 다양한 곳에서 가져올 수 있다. (Resource 서비스 추상화)   
+> 서비스 추상화를 통한 **JaxbXmlSqlReader** 개선 및 발전<br>
+> JAXB 외에도 XML을 오브젝트로 변환하는 다양한 Object - XML Mapping 기술이 있다. (OXM 서비스 추상화)<br> 
+> XML 파일을 클래스패스, 파일, HTTP 프로토콜 등 다양한 곳에서 가져올 수 있다. (Resource 서비스 추상화)<br>
 
 ### 7.3.1 OXM 서비스 추상화
-> OXM 기술에는 여러가지가 있다.
-> Jaxb, Castor XML, JiBX, XmlBeans, Xstream 등.. 의 기술은 모두 XML 을 Object 로 변환하려는 목적을 가지고 있다. 
+> XML과 자바오브젝트를 매핑해서 상호 변환해주는 기술이 OXM 이다.<br>
+> Jaxb, Castor XML, JiBX, XmlBeans, Xstream 등.. 의 기술은 모두 XML 을 Object 로 변환하려는 목적을 가지고 있다.<br>
+> 여러 기술이 존재한다 -> 서비스 추상화를 이용해 자유롭게 기술을 바꾸어 적용할 수 있다.
+
 #### 7.3.1.1 OXM 서비스 인터페이스
-> SqlReader 는 XML을 자바 오브젝트로 변환하는 Unmarshaller 를 이용한다. 
-> Unmarshalling : 컴퓨터 과학에서 언 마샬링은 저장 또는 전송에 사용 된 객체의 표현을 실행 가능 객체의 표현으로 변환하는 프로세스를 의미합니다
+> SqlReader 는 XML을 자바 오브젝트로 변환하는 **Unmarshaller** 를 이용한다. <br>
+
+`Unmarshalling : 컴퓨터 과학에서 언 마샬링은 저장 또는 전송에 사용 된 객체의 표현을 실행 가능 객체의 표현으로 변환하는 프로세스를 의미한다. - wiki`
+
+```java
+public interface Unmarshaller {
+    //...
+    // Source를 통해 제공받은 XML을 자바 오브젝트 트리로 변환해서 루트 오브젝트를 반환한다.
+    Object unmarshal(Source source) throws IOException, XmlMappingException;
+}
+```
+- Unmarshaller 인터페이스를 구현한 다섯가지 클래스가 있고 해당 기술에 필요로하는 추가정보를 빈 프로퍼티로 지정할 수 있다. 
 
 #### 7.3.1.2 JAXB 구현 테스트
-> JAXB 를 이용하도록 만들어진 Unmarshaller 구현 클래스는 Jaxb2Marshaller 이다.
-> XML 설정 파일을 만들고 JAXB 언마샬러를 등록하고 사용할 수 있다.
-> OXM 서비스 추상화를 사용하면 어디에서도 JAXB라는 구체적인 기술에 의존하는 부분이 없다.
+> JAXB 를 이용하도록 만들어진 Unmarshaller 구현 클래스는 Jaxb2Marshaller 이다.<br>
+> XML 설정 파일을 만들고 JAXB 언마샬러를 등록하고 사용할 수 있다.<br>
+> OXM 서비스 추상화를 사용하면 어디에서도 JAXB라는 구체적인 기술에 의존하는 부분이 없다.<br>
+```xml
+<bean id="unmarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+    <property name="contextPath" value="springbook.user.sqlservice.jaxb"/>
+</bean>
+```
+```java
+// 서비스 추상화 전
+String contextPath = Sqlmap.class.getPackage().getName();
+JAXBContext context = JAXBContext.newInstance(contextPath);
+javax.xml.bind.Unmarshaller sqlUnmarshaller = context.createUnmarshaller();
+Sqlmap sqlmap = (Sqlmap) sqlUnmarshaller.unmarshal(getClass().getClassLoader().getResourceAsStream("sqlmap.xml"));
+
+// 서비스 추상화 후 (JAXB 기술에 의존하는 부분이 없다)
+Source xmlSource = new StreamSource(getClass().getClassLoader().getResourceAsStream("sqlmap.xml"));
+Sqlmap sqlmap = (Sqlmap) this.unmarshaller.unmarshal(xmlSource);
+```
 
 #### 7.3.1.3 Castor 구현 테스트
-> 서비스 추상화를 이용하면 설정만 바꾸고 애플리케이션 코드는 일관되게 유지할 수 있다.
-> Mockito 목 오브젝트의 예제.. 가능하면
+> OXM 서비스 추상화를 이용하면 설정만 바꾸고 애플리케이션 코드는 일관되게 유지할 수 있다.
+```java
+@Mock
+private Unmarshaller mockUnmarshaller;
+
+@Test
+public void mockUnmarshallerTest() throws IOException {
+    when(mockUnmarshaller.unmarshal((Source) any())).thenReturn(getDefaultSqlMap());
+    Sqlmap sqlmap = (Sqlmap) this.mockUnmarshaller.unmarshal(new StreamSource());
+
+    checkSqlList(sqlmap);
+}
+```
 
 ### 7.3.2 OXM 서비스 추상화 적용
-> SqlReader 는 OXM 언마샬러를 이용하여 OxmSqlService 내에 고정한다.
-> 기존구조를 유지하고 SQL을 읽는 방법을 OXM으로 제한하여 사용성을 극대화 하는 방법이 목적이다. 
+> SqlRegistry는 DI 받도록 설정, SqlReader 는 OXM 언마샬러를 이용하여 OxmSqlService 내에 고정한다.<br>
+> 기존구조를 유지하고 SQL을 읽는 방법(Reader)을 OXM으로 제한하여 사용성을 극대화 하는 방법이 목적이다. <br>
+![7.7 OxmSqlReader - OxmSqlService]()
 
 #### 7.3.2.1 멤버 클래스를 참조하는 통합 클래스
 > SqlReader 타입의 의존 오브젝트를 사용하되 스태틱 멤버 클래스로 내장해 자신만 사용하도록 한다.
