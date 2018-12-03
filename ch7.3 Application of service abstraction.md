@@ -121,10 +121,59 @@ public class OxmSqlService implements SqlService {
 > 외부의 리소스 정보가 필요할 때 이용하는 추상화 인터페이스
 > Resource 는 스프링에서 서비스를 제공해주는 빈이 아니라 단순한 정보를 가진 값으로 취급된다. 
 
+```java
+public interface Resource extends InputStreamSource {
+    // 리소스의 존재나 읽기 가능한지 여부를 확인 가능, 입력 스트림이 열려있는지 확인 가능
+    boolean isExists();
+    boolean isReadable();
+    boolean isOpen();
+    
+    //..
+    
+    // 리소스 이름과 부가정보 확인 가능
+    long lastModified();
+    String getFilename();
+    String getDescription();
+}
+
+public interface InputStreamSource {
+    InputStream getInputStream() throws IOException;
+}
+```
+
 #### 7.3.3.2 리로스 로더
 > 문자열로 정의된 리소스를 실제 Resource 타입 오브젝트로 변환해주는 인터페이스
 > 접두어가 의미하는 위치와 방법을 이용해 리소스를 읽어온다.
 
+![7-1 ResourceLoader 가 처리하는 접두어의 예](https://github.com/YounHyunJun/TobySpringExample/blob/master/img/7.1table.PNG)
+
+```java
+public interface ResourceLoader {
+    String CLASSPATH_URL_PREFIX = "classpath:";
+    Resource getResource(String path);
+    ClassLoader getClassLoader();
+}
+```
+
 #### 7.3.3.3 Resource를 이용해 XML 파일 가져오기
 > String 타입을 Resource 타입으로 바꾼다.
 > Resource 타입은 실제 소스가 어떤 것이든 상관없이 getInputStream() 메소드를 이용해 스트림으로 데이터를 가져올 수 있다.
+
+```java
+private class OxmSqlReader implements SqlReader {
+    // Resource 구현 클래스인 ClassPathResource를 이용해 classPath 경로의 파일을 가져온다.
+    private Resource sqlmap = new ClassPathResource("sqlmap.xml");
+    
+    public void setSqlmap(Resource sqlmap){
+        this.sqlmap = sqlmap;
+    }
+    
+    public void read(SqlRegistry sqlRegistry){
+        try {
+            // 리소스의 종류에 상관없이 스트림으로 가져올 수 있다.
+            Source source = new StreamSource(sqlmap.getInputStream())   
+        }
+        //...
+    }
+}
+```
