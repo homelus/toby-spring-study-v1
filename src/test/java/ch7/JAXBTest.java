@@ -4,6 +4,7 @@ import jun.spring.ch7.user.sqlservice.jaxb.SqlType;
 import jun.spring.ch7.user.sqlservice.jaxb.Sqlmap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,10 +15,13 @@ import javax.xml.bind.JAXBException;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:jaxb-unmarshaller-context.xml")
@@ -25,6 +29,17 @@ public class JAXBTest {
 
     @Autowired
     private Unmarshaller unmarshaller;
+
+    @Mock
+    private Unmarshaller mockUnmarshaller;
+
+    @Test
+    public void mockUnmarshallerTest() throws IOException {
+        when(mockUnmarshaller.unmarshal((Source) any())).thenReturn(getDefaultSqlMap());
+        Sqlmap sqlmap = (Sqlmap) this.mockUnmarshaller.unmarshal(new StreamSource());
+
+        checkSqlList(sqlmap);
+    }
 
     @Test
     public void unmarshallerSqlMap() throws IOException {
@@ -57,6 +72,26 @@ public class JAXBTest {
         assertThat(sqlList.get(1).getValue(), is("select"));
         assertThat(sqlList.get(2).getKey(), is("delete"));
         assertThat(sqlList.get(2).getValue(), is("delete"));
+    }
+
+    private Sqlmap getDefaultSqlMap() {
+
+        SqlType add = new SqlType();
+        add.setKey("add");
+        add.setValue("insert");
+
+        SqlType get = new SqlType();
+        add.setKey("get");
+        add.setValue("select");
+
+        SqlType delete = new SqlType();
+        add.setKey("delete");
+        add.setValue("delete");
+
+        Sqlmap sqlmap = new Sqlmap();
+        sqlmap.setSqls(Arrays.asList(add, get, delete));
+
+        return sqlmap;
     }
 
 }
