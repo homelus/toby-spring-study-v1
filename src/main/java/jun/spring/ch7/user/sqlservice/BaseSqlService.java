@@ -2,6 +2,8 @@ package jun.spring.ch7.user.sqlservice;
 
 import jun.spring.ch7.user.exception.SqlNotFoundException;
 import jun.spring.ch7.user.exception.SqlRetrievalFailureException;
+import jun.spring.ch7.user.sqlservice.reader.SqlReader;
+import jun.spring.ch7.user.sqlservice.registry.SqlRegistry;
 
 import javax.annotation.PostConstruct;
 

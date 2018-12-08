@@ -1,9 +1,11 @@
 package jun.spring.ch7.user.sqlservice;
 
-import jun.spring.ch7.user.dao.UserDao;
 import jun.spring.ch7.user.exception.SqlRetrievalFailureException;
 import jun.spring.ch7.user.sqlservice.jaxb.SqlType;
 import jun.spring.ch7.user.sqlservice.jaxb.Sqlmap;
+import jun.spring.ch7.user.sqlservice.reader.SqlReader;
+import jun.spring.ch7.user.sqlservice.registry.HashMapSqlRegistry;
+import jun.spring.ch7.user.sqlservice.registry.SqlRegistry;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.oxm.Unmarshaller;

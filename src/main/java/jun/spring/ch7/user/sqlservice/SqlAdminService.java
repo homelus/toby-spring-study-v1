@@ -1,5 +1,7 @@
 package jun.spring.ch7.user.sqlservice;
 
+import jun.spring.ch7.user.sqlservice.registry.UpdatableSqlRegistry;
+
 public class SqlAdminService {
 
     private UpdatableSqlRegistry updatableSqlRegistry;
