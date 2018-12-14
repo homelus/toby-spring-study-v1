@@ -1,6 +1,6 @@
 package ch7;
 
-import ch7.context.TestApplicationContext;
+import ch7.context.AppContext;
 import jun.spring.ch7.user.dao.UserDao;
 import jun.spring.ch7.user.model.Level;
 import jun.spring.ch7.user.model.User;
@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,7 +19,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestApplicationContext.class)
+@ContextConfiguration(classes = AppContext.class)
 public class UserDaoTest {
 
     @Autowired

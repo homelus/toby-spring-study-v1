@@ -1,7 +1,8 @@
 package ch7;
 
 import ch5.TestUserServiceException;
-import ch7.context.TestApplicationContext;
+import ch7.context.AppContext;
+import ch7.context.TestAppContext;
 import jun.spring.ch7.user.dao.UserDao;
 import jun.spring.ch7.user.model.Level;
 import jun.spring.ch7.user.model.User;
@@ -12,12 +13,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -39,9 +42,13 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestApplicationContext.class)
+@ActiveProfiles("test")
+@ContextConfiguration(classes = AppContext.class)
 //@Transactional
 public class UserServiceTest {
+
+    @Autowired
+    private DefaultListableBeanFactory beanFactory;
 
     @Autowired
     UserService userService;
@@ -72,6 +79,13 @@ public class UserServiceTest {
                 new User("yudongyup", "여동엽", "y1234", Level.SILVER, 60, MIN_RECOMMEND_FOR_GOLD, "ydy@email.com"),
                 new User("jusunghwan", "주성환", "j1234", Level.GOLD, 100, Integer.MAX_VALUE, "jsh@email.com")
         );
+    }
+
+    @Test
+    public void beans() {
+        for (String name : beanFactory.getBeanDefinitionNames()) {
+            System.out.println(name + "\t" + beanFactory.getBean(name).getClass().getName());
+        }
     }
 
     @Test
