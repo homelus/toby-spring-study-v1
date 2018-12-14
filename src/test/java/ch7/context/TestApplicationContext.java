@@ -12,7 +12,9 @@ import jun.spring.ch7.user.sqlservice.registry.EmbeddedDbSqlRegistry;
 import jun.spring.ch7.user.sqlservice.registry.SqlRegistry;
 import jun.spring.ch7.user.sqlservice.registry.UpdatableSqlRegistry;
 import org.mariadb.jdbc.Driver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
@@ -30,10 +32,11 @@ import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.
 
 @Configuration
 @EnableTransactionManagement
+@ComponentScan(basePackages = "jun.spring.ch7")
 public class TestApplicationContext {
 
     /**
-     * DB 연결 및 트랜재겻ㄴ
+     * DB 연결 및 트랜잭션
      */
 
     @Bean
@@ -58,32 +61,13 @@ public class TestApplicationContext {
      * 애플리케이션 로직 & 테스트
      */
 
-    @Bean
-    public UserDao userDao() {
-        UserDaoJdbc userDao = new UserDaoJdbc();
-        userDao.setSqlService(sqlService());
-        userDao.setDataSource(dataSource());
-        return userDao;
-    }
-
-    @Bean
-    public UserService userService() {
-        UserServiceImpl userService = new UserServiceImpl();
-        userService.setUserDao(userDao());
-        userService.setMailSender(mailSender());
-        return userService;
-    }
-
-    public SqlAdminService sqlAdminService() {
-        SqlAdminService sqlAdminService = new SqlAdminService();
-        sqlAdminService.setUpdatableSqlRegistry(updatableSqlRegistry());
-        return sqlAdminService;
-    }
+    @Autowired
+    private UserDao userDao;
 
     @Bean
     public UserService testUserService() {
         TestUserService testUserService = new TestUserService();
-        testUserService.setUserDao(userDao());
+        testUserService.setUserDao(userDao);
         testUserService.setMailSender(mailSender());
         return testUserService;
     }

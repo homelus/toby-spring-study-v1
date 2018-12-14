@@ -4,23 +4,29 @@ import jun.spring.ch7.user.exception.DuplicateUserIdException;
 import jun.spring.ch7.user.model.Level;
 import jun.spring.ch7.user.model.User;
 import jun.spring.ch7.user.sqlservice.SqlService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public class UserDaoJdbc implements UserDao {
 
+    @Autowired
     private SqlService sqlService;
 
     private JdbcTemplate jdbcTemplate;
 
-    public void setSqlService(SqlService sqlService) {
-        this.sqlService = sqlService;
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     private RowMapper<User> userMapper = new RowMapper<User>() {
@@ -37,10 +43,6 @@ public class UserDaoJdbc implements UserDao {
             return user;
         }
     };
-
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     public void add(final User user) {
         try {
