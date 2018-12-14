@@ -4,7 +4,11 @@ import ch7.DummyMailSender;
 import ch7.UserServiceTest;
 import jun.spring.ch7.user.service.UserService;
 import org.mariadb.jdbc.Driver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mail.MailSender;
@@ -16,9 +20,27 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@Import({SqlServiceContext.class})
 @ComponentScan(basePackages = "jun.spring.ch7")
+@Import({SqlServiceContext.class})
+@PropertySource("/database.properties")
 public class AppContext {
+
+    @Value("${db.driverClass}")
+    Class<? extends Driver> driverClass;
+
+    @Value("${db.url}")
+    String url;
+
+    @Value("${db.username}")
+    String username;
+
+    @Value("${db.password}")
+    String passowrd;
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
     /**
      * DB 연결 및 트랜잭션
@@ -28,10 +50,10 @@ public class AppContext {
     public DataSource dataSource() {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
 
-        dataSource.setDriverClass(Driver.class);
-        dataSource.setUrl("jdbc:mariadb://localhost/spring_test_dev");
-        dataSource.setUsername("root");
-        dataSource.setPassword("1234");
+        dataSource.setDriverClass(this.driverClass);
+        dataSource.setUrl(this.url);
+        dataSource.setUsername(this.username);
+        dataSource.setPassword(this.passowrd);
         return dataSource;
     }
 
@@ -68,3 +90,4 @@ public class AppContext {
     }
 
 }
+
