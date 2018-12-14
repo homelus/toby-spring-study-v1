@@ -66,12 +66,6 @@
         <jdbc:script location="classpath:sqlRegistrySchema.sql"/>
     </jdbc:embedded-database>
 
-    <!--<bean id="sqlReader" class="jun.spring.ch7.user.sqlservice.reader.JaxbXmlSqlReader">-->
-        <!--<property name="sqlmapFile" value="/jaxb/sqlmap.xml"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="sqlRegistry" class="jun.spring.ch7.user.sqlservice.registry.HashMapSqlRegistry"/>-->
-
     <bean id="mailSender" class="ch6.DummyMailSender"/>
 
 </beans>

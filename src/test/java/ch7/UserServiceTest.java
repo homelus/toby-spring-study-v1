@@ -1,6 +1,7 @@
 package ch7;
 
 import ch5.TestUserServiceException;
+import ch7.context.TestApplicationContext;
 import jun.spring.ch7.user.dao.UserDao;
 import jun.spring.ch7.user.model.Level;
 import jun.spring.ch7.user.model.User;
@@ -37,8 +38,8 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration("/test-applicationContext-v7.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = TestApplicationContext.class)
 //@Transactional
 public class UserServiceTest {
 
@@ -250,7 +251,7 @@ public class UserServiceTest {
         }
     }
 
-    static class TestUserService extends UserServiceImpl {
+    public static class TestUserService extends UserServiceImpl {
         private String id = "yudongyup";
 
         @Override

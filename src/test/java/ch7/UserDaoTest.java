@@ -1,0 +1,128 @@
+package ch7;
+
+import ch7.context.TestApplicationContext;
+import jun.spring.ch7.user.dao.UserDao;
+import jun.spring.ch7.user.model.Level;
+import jun.spring.ch7.user.model.User;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = TestApplicationContext.class)
+public class UserDaoTest {
+
+    @Autowired
+    private UserDao userDao;
+
+    private User user1;
+    private User user2;
+    private User user3;
+
+    @Before
+    public void setUp() {
+        user1 = new User("hyosub", "곽효섭", "h1234", Level.BASIC, 1, 0, "hs@mail.com");
+        user2 = new User("sangmin", "이상민", "l1234", Level.SILVER, 55, 10, "sm@mail.com");
+        user3 = new User("hyungsuk", "김형석", "k1234", Level.GOLD, 100, 40, "hsk@mail.com");
+    }
+
+    @Test
+    public void deleteAll() throws SQLException {
+        userDao.deleteAll();
+    }
+
+    @Test
+    public void addAndGet() throws SQLException {
+        userDao.deleteAll();
+        assertThat(userDao.getCount(), is(0));
+
+        userDao.add(user1);
+        userDao.add(user2);
+        assertThat(userDao.getCount(), is(2));
+
+        User userget1= userDao.get(user1.getId());
+
+        assertThat(userget1.getName(), is(user1.getName()));
+        assertThat(userget1.getPassword(), is(user1.getPassword()));
+
+        User userget2 = userDao.get(user2.getId());
+        assertThat(userget2.getName(), is(user2.getName()));
+        assertThat(userget2.getPassword(), is(user2.getPassword()));
+    }
+
+    @Test(expected = EmptyResultDataAccessException.class)
+    public void getUserFailure() throws SQLException {
+        userDao.deleteAll();
+        assertThat(userDao.getCount(), is(0));
+
+        userDao.get("unknown_id");
+    }
+
+    @Test
+    public void getAll() throws SQLException {
+        userDao.deleteAll();
+
+        List<User> users0 = userDao.getAll();
+        assertThat(users0.size(), is(0));
+
+        userDao.add(user1);
+        List<User> users1 = userDao.getAll();
+        assertThat(users1.size(), is(1));
+        checkSameUser(user1, users1.get(0));
+
+        userDao.add(user2);
+        List<User> users2 = userDao.getAll();
+        assertThat(users2.size(), is(2));
+        checkSameUser(user1, users2.get(0));
+        checkSameUser(user2, users2.get(1));
+
+        userDao.add(user3);
+        List<User> users3 = userDao.getAll();
+        assertThat(users3.size(), is(3));
+        checkSameUser(user1, users3.get(0));
+        checkSameUser(user2, users3.get(2));
+        checkSameUser(user3, users3.get(1));
+    }
+
+    @Test
+    public void update() {
+        userDao.deleteAll();
+
+        userDao.add(user1);
+        userDao.add(user2);
+
+        user1.setName("여동엽");
+        user1.setPassword("dongyup");
+        user1.setLevel(Level.GOLD);
+        user1.setLogin(1000);
+        user1.setRecommend(999);
+        userDao.update(user1);
+
+        User user1update = userDao.get(user1.getId());
+        checkSameUser(user1, user1update);
+        User user2update = userDao.get(user2.getId());
+        checkSameUser(user2, user2update);
+    }
+
+    private void checkSameUser(User user1, User user2) {
+        assertThat(user1.getId(), is(user2.getId()));
+        assertThat(user1.getName(), is(user2.getName()));
+        assertThat(user1.getPassword(), is(user2.getPassword()));
+        assertThat(user1.getLevel(), is(user2.getLevel()));
+        assertThat(user1.getLogin(), is(user2.getLogin()));
+        assertThat(user1.getRecommend(), is(user2.getRecommend()));
+        assertThat(user1.getEmail(), is(user2.getEmail()));
+    }
+
+}
