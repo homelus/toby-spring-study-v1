@@ -3,12 +3,14 @@ package ch7.context;
 import ch7.DummyMailSender;
 import ch7.UserServiceTest;
 import jun.spring.ch7.user.service.UserService;
+import jun.spring.sqlservice.EnableSqlService;
+import jun.spring.sqlservice.SqlMapConfig;
 import org.mariadb.jdbc.Driver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mail.MailSender;
@@ -21,9 +23,9 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = "jun.spring.ch7")
-@Import({SqlServiceContext.class})
+@EnableSqlService
 @PropertySource("/database.properties")
-public class AppContext {
+public class AppContext implements SqlMapConfig {
 
     @Value("${db.driverClass}")
     Class<? extends Driver> driverClass;
@@ -41,6 +43,16 @@ public class AppContext {
     public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
+
+    @Override
+    public Resource getSqlMapResource() {
+        return new ClassPathResource("jaxb/sqlmap.xml");
+    }
+
+//    @Bean
+//    public SqlMapConfig sqlMapConfig() {
+//        return new UserSqlMapConfig();
+//    }
 
     /**
      * DB 연결 및 트랜잭션

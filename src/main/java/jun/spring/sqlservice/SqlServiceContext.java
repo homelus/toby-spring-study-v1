@@ -1,10 +1,9 @@
-package ch7.context;
+package jun.spring.sqlservice;
 
-import jun.spring.ch7.user.sqlservice.OxmSqlService;
-import jun.spring.ch7.user.sqlservice.SqlService;
-import jun.spring.ch7.user.sqlservice.registry.EmbeddedDbSqlRegistry;
-import jun.spring.ch7.user.sqlservice.registry.SqlRegistry;
-import jun.spring.ch7.user.sqlservice.registry.UpdatableSqlRegistry;
+import jun.spring.sqlservice.registry.EmbeddedDbSqlRegistry;
+import jun.spring.sqlservice.registry.SqlRegistry;
+import jun.spring.sqlservice.registry.UpdatableSqlRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -18,11 +17,15 @@ import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.
 @Configuration
 public class SqlServiceContext {
 
+    @Autowired
+    SqlMapConfig sqlMapConfig;
+
     @Bean
     public SqlService sqlService() {
         OxmSqlService sqlService = new OxmSqlService();
         sqlService.setUnmarshaller(unmarshaller());
         sqlService.setSqlRegistry(sqlRegistry());
+        sqlService.setSqlmap(sqlMapConfig.getSqlMapResource());
         return sqlService;
     }
 
@@ -43,7 +46,7 @@ public class SqlServiceContext {
     @Bean
     public Unmarshaller unmarshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("jun.spring.ch7.user.sqlservice.jaxb");
+        marshaller.setContextPath("jun.spring.sqlservice.jaxb");
         return marshaller;
     }
 

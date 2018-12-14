@@ -1,7 +1,7 @@
 package ch7;
 
-import jun.spring.ch7.user.sqlservice.registry.ConcurrentHashMapSqlRegistry;
-import jun.spring.ch7.user.sqlservice.registry.UpdatableSqlRegistry;
+import jun.spring.sqlservice.registry.ConcurrentHashMapSqlRegistry;
+import jun.spring.sqlservice.registry.UpdatableSqlRegistry;
 
 public class ConcurrentHashMapSqlRegistryTest extends AbstractUpdatableSqlRegistryTest {
     @Override

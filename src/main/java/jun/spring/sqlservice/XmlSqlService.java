@@ -1,12 +1,12 @@
-package jun.spring.ch7.user.sqlservice;
+package jun.spring.sqlservice;
 
 import jun.spring.ch7.user.dao.UserDao;
 import jun.spring.ch7.user.exception.SqlNotFoundException;
 import jun.spring.ch7.user.exception.SqlRetrievalFailureException;
-import jun.spring.ch7.user.sqlservice.jaxb.SqlType;
-import jun.spring.ch7.user.sqlservice.jaxb.Sqlmap;
-import jun.spring.ch7.user.sqlservice.reader.SqlReader;
-import jun.spring.ch7.user.sqlservice.registry.SqlRegistry;
+import jun.spring.sqlservice.jaxb.SqlType;
+import jun.spring.sqlservice.jaxb.Sqlmap;
+import jun.spring.sqlservice.reader.SqlReader;
+import jun.spring.sqlservice.registry.SqlRegistry;
 
 import javax.annotation.PostConstruct;
 import javax.xml.bind.JAXBContext;
@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class XmlSqlService implements SqlService, SqlRegistry, SqlReader{
+public class XmlSqlService implements SqlService, SqlRegistry, SqlReader {
 
     private SqlReader sqlReader;
 

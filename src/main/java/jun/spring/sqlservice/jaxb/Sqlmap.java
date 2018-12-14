@@ -6,7 +6,7 @@
 //
 
 
-package jun.spring.ch7.user.sqlservice.jaxb;
+package jun.spring.sqlservice.jaxb;
 
 import java.util.ArrayList;
 import java.util.List;

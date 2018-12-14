@@ -1,7 +1,7 @@
 package ch7;
 
-import jun.spring.ch7.user.sqlservice.jaxb.SqlType;
-import jun.spring.ch7.user.sqlservice.jaxb.Sqlmap;
+import jun.spring.sqlservice.jaxb.SqlType;
+import jun.spring.sqlservice.jaxb.Sqlmap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

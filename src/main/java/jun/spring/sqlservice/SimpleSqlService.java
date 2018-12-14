@@ -1,4 +1,4 @@
-package jun.spring.ch7.user.sqlservice;
+package jun.spring.sqlservice;
 
 import jun.spring.ch7.user.exception.SqlRetrievalFailureException;
 

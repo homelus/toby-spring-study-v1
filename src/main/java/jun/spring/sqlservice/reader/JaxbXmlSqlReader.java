@@ -1,9 +1,9 @@
-package jun.spring.ch7.user.sqlservice.reader;
+package jun.spring.sqlservice.reader;
 
 import jun.spring.ch7.user.dao.UserDao;
-import jun.spring.ch7.user.sqlservice.jaxb.SqlType;
-import jun.spring.ch7.user.sqlservice.jaxb.Sqlmap;
-import jun.spring.ch7.user.sqlservice.registry.SqlRegistry;
+import jun.spring.sqlservice.jaxb.SqlType;
+import jun.spring.sqlservice.jaxb.Sqlmap;
+import jun.spring.sqlservice.registry.SqlRegistry;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

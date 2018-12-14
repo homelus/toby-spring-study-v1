@@ -43,18 +43,18 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="sqlService" class="jun.spring.ch7.user.sqlservice.OxmSqlService">
+    <bean id="sqlService" class="jun.spring.sqlservice.OxmSqlService">
         <property name="unmarshaller" ref="unmarshaller"/>
         <property name="sqlRegistry" ref="sqlRegistry"/>
     </bean>
 
-    <bean id="sqlRegistry" class="jun.spring.ch7.user.sqlservice.registry.EmbeddedDbSqlRegistry">
+    <bean id="sqlRegistry" class="jun.spring.sqlservice.registry.EmbeddedDbSqlRegistry">
         <property name="dataSource" ref="embeddedDatabase"/>
     </bean>
 
     <!--<bean id="sqlRegistry" class="jun.spring.ch7.user.sqlservice.registry.ConcurrentHashMapSqlRegistry"/>-->
 
-    <bean id="sqlAdminService" class="jun.spring.ch7.user.sqlservice.SqlAdminService">
+    <bean id="sqlAdminService" class="jun.spring.sqlservice.SqlAdminService">
         <property name="updatableSqlRegistry" ref="sqlRegistry"/>
     </bean>
 

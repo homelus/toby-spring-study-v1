@@ -1,7 +1,7 @@
-package jun.spring.ch7.user.sqlservice;
+package jun.spring.sqlservice;
 
-import jun.spring.ch7.user.sqlservice.reader.JaxbXmlSqlReader;
-import jun.spring.ch7.user.sqlservice.registry.HashMapSqlRegistry;
+import jun.spring.sqlservice.reader.JaxbXmlSqlReader;
+import jun.spring.sqlservice.registry.HashMapSqlRegistry;
 
 public class DefaultSqlService extends BaseSqlService {
 

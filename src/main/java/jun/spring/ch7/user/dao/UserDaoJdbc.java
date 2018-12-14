@@ -3,12 +3,11 @@ package jun.spring.ch7.user.dao;
 import jun.spring.ch7.user.exception.DuplicateUserIdException;
 import jun.spring.ch7.user.model.Level;
 import jun.spring.ch7.user.model.User;
-import jun.spring.ch7.user.sqlservice.SqlService;
+import jun.spring.sqlservice.SqlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;

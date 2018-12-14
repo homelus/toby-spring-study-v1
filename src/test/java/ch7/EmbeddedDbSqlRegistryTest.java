@@ -1,8 +1,8 @@
 package ch7;
 
 import jun.spring.ch7.user.exception.SqlUpdateFailureException;
-import jun.spring.ch7.user.sqlservice.registry.EmbeddedDbSqlRegistry;
-import jun.spring.ch7.user.sqlservice.registry.UpdatableSqlRegistry;
+import jun.spring.sqlservice.registry.EmbeddedDbSqlRegistry;
+import jun.spring.sqlservice.registry.UpdatableSqlRegistry;
 import org.junit.After;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;

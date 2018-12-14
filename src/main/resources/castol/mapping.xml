@@ -3,13 +3,13 @@
         "-//EXOLAB/Castor Mapping DTD Version 1.0//EN"
         "http://castor.org/mapping.dtd">
 <mapping>
-    <class name="jun.spring.ch7.user.sqlservice.jaxb.Sqlmap">
+    <class name="jun.spring.sqlservice.jaxb.Sqlmap">
         <map-to xml="sqlmap"/>
-        <field name="sql" type="jun.spring.ch7.user.sqlservice.jaxb.SqlType" required="true" colleciton="arraylist">
+        <field name="sql" type="jun.spring.sqlservice.jaxb.SqlType" required="true" colleciton="arraylist">
             <bind-xml name="sql" node="element"/>
         </field>
     </class>
-    <class name="jun.spring.ch7.user.sqlservice.jaxb.SqlType">
+    <class name="jun.spring.sqlservice.jaxb.SqlType">
         <map-to xml="sql"/>
         <field name="key" type="string" required="true">
             <bind-xml name="key" node="attribute"/>

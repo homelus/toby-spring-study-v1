@@ -1,12 +1,12 @@
 //
-// ÀÌ ÆÄÀÏÀº JAXB(JavaTM Architecture for XML Binding) ÂüÁ¶ ±¸Çö 2.2.8-b130911.1802 ¹öÀüÀ» ÅëÇØ »ý¼ºµÇ¾ú½À´Ï´Ù. 
-// <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a>¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À. 
-// ÀÌ ÆÄÀÏÀ» ¼öÁ¤ÇÏ¸é ¼Ò½º ½ºÅ°¸¶¸¦ ÀçÄÄÆÄÀÏÇÒ ¶§ ¼öÁ¤ »çÇ×ÀÌ ¼Õ½ÇµË´Ï´Ù. 
-// »ý¼º ³¯Â¥: 2018.12.02 ½Ã°£ 09:04:50 PM KST 
+// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ JAXB(JavaTM Architecture for XML Binding) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 2.2.8-b130911.1802 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. 
+// <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a>ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½. 
+// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ò½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Õ½ÇµË´Ï´ï¿½. 
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥: 2018.12.02 ï¿½Ã°ï¿½ 09:04:50 PM KST 
 //
 
 
-package jun.spring.ch7.user.sqlservice.jaxb;
+package jun.spring.sqlservice.jaxb;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

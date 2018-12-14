@@ -2,8 +2,7 @@ package ch7;
 
 import jun.spring.ch7.user.exception.SqlNotFoundException;
 import jun.spring.ch7.user.exception.SqlUpdateFailureException;
-import jun.spring.ch7.user.sqlservice.registry.ConcurrentHashMapSqlRegistry;
-import jun.spring.ch7.user.sqlservice.registry.UpdatableSqlRegistry;
+import jun.spring.sqlservice.registry.UpdatableSqlRegistry;
 import org.junit.Before;
 import org.junit.Test;
 
